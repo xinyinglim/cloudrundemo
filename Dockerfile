@@ -3,7 +3,7 @@ WORKDIR /app
 COPY go.* ./
 RUN go mod download
 
-COPY endpoint-hello-simple.go ./
+COPY main.go ./
 
 #Build binary
 RUN CGO_ENABLED=0 GOOS=linux go build -mod=readonly -v -o server
