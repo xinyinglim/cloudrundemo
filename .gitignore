@@ -1,2 +1,3 @@
-./call10.sh
-./setup.sh
+cloudrun/call10.sh
+cloudrun/setup.sh
+.gitignore

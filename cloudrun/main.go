@@ -8,7 +8,7 @@ import (
 )
 
 func handler(res http.ResponseWriter, req *http.Request) {
-	fmt.Fprintf(res, "Hello World\n")
+	fmt.Fprintf(res, "Hello World2\n")
 }
 
 func main() {
@@ -21,3 +21,4 @@ func main() {
 
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", portNo), nil))
 }
+
