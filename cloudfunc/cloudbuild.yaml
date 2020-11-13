@@ -1,0 +1,20 @@
+steps:
+    - name: gcr.io/cloud-builders/go
+      args: ['test', '-v' ,'./...']
+      env: ['PROJECT_ROOT=github.com/xinyinglim/demos/cloudfunc/main']
+      dir: cloudfunc
+    - name: 'gcr.io/cloud-builders/gcloud'
+      args:
+      - 'functions'
+      - 'deploy'
+      - 'helloworld'
+      - '--trigger-http'
+      - '--runtime=go113'
+      - '--region'
+      - 'asia-east2'
+      - '--project=$PROJECT_ID'
+      - '--allow-unauthenticated'
+      dir: cloudfunc
+images: #check explaination for this
+    - 'gcr.io/$PROJECT_ID/helloworld:$SHORT_SHA'
+  

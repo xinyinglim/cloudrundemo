@@ -25,3 +25,7 @@ Give Cloud Build service account the Cloud Run Admin and Service Account User Ro
 # Tunning tests
 go test -v
 
+# to build, just commit
+
+# todo
+try traffic splitting
