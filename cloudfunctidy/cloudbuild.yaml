@@ -1,0 +1,14 @@
+steps:
+- name: 'gcr.io/cloud-builders/gcloud'
+  args:
+  - 'functions'
+  - 'deploy'
+  - 'LabelImage'
+  - '--trigger-resource=cloudfunctidy'
+  - '--trigger-event=google.storage.object.finalize'
+  - '--runtime=go113'
+  - '--region'
+  - 'asia-east2'
+  - '--project=$PROJECT_ID'
+  - '--no-allow-unauthenticated'
+  dir: cloudfunctidy
