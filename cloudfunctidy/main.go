@@ -13,7 +13,7 @@ import (
 )
 
 var projectID string = "demos-xy"
-var maxNoOfLabels int = 1
+var maxNoOfLabels int = 3
 
 type GCSEvent struct {
 	Name        string    `json:"name"`
@@ -52,9 +52,9 @@ func newImage(uri string, annotations []*visionpb.EntityAnnotation) Image {
 	}
 }
 
-func LabelImage(c context.Context, e GCSEvent) error{
-	fileURI := fmt.Sprintf("gs://",e.Bucket,"/",e.Name)
-	labels, err := getLabels(c, fileURI)
+func LabelImage(c context.Context, e GCSEvent) error {
+	fileURI := fmt.Sprintf("gs://%s/%s", e.Bucket, e.Name)
+	labels, err := getLabelsUsingCloudVisionAPI(c, fileURI)
 	if err != nil {
 		return fmt.Errorf("Unable to get labels: %v", err)
 	}
@@ -84,7 +84,7 @@ func uploadImageLabelsToFirestore(
 	return nil
 }
 
-func getLabels(c context.Context, fileURI string) ([]*visionpb.EntityAnnotation, error) {
+func getLabelsUsingCloudVisionAPI(c context.Context, fileURI string) ([]*visionpb.EntityAnnotation, error) {
 	visionClient, err := vision.NewImageAnnotatorClient(c)
 	if err != nil {
 		log.Fatalf("Failed to create client: %v", err)
