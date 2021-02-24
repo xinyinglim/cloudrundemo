@@ -13,7 +13,7 @@ import (
 )
 
 var projectID string = "demos-xy"
-var maxNoOfLabels int = 1
+var maxNoOfLabels int = 3
 
 type GCSEvent struct {
 	Name        string    `json:"name"`
