@@ -8,7 +8,7 @@ import (
 func TestMain(t *testing.T) {
 	fileURI := "gs://cloudfunctidy/upload/BeaWilma.jpg"
 	c := context.Background()
-	labels, err := getLabels(c, fileURI)
+	labels, err := getLabelsUsingCloudVisionAPI(c, fileURI)
 	if err != nil {
 		t.Errorf("Unable to get labels: %v", err)
 	}
